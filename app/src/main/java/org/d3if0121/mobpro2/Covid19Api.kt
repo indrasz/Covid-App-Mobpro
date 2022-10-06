@@ -17,9 +17,11 @@ object Covid19Api {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)
         .build()
-    val service : ApiService by lazy {retrofit.create(ApiService ::class.java)}
+    val service : ApiService by lazy {retrofit.create(ApiService::class.java)}
     interface ApiService{
         @GET("update.json")
         suspend fun getData() : Data
     }
 }
+
+enum class ApiStatus { LOADING, SUCCESS, FAILED }

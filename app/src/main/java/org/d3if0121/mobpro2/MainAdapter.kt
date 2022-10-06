@@ -1,5 +1,6 @@
 package org.d3if0121.mobpro2
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +12,14 @@ import java.util.*
 class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     private val formatter = SimpleDateFormat("dd MMMM", Locale("ID", "id"))
     private val data = mutableListOf<Harian>()
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(newData: List<Harian>) {
         data.clear()
         data.addAll(newData)
         notifyDataSetChanged()
+    }
+    fun getDate(position: Int): Date {
+        return Date(data[position].key)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
